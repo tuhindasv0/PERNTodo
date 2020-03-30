@@ -5,7 +5,7 @@ const pool=Pool(
     {
         user:"postgres",
         password:"postgres123",
-        host:"loicalhost",
+        host:"localhost",
         port:5432,
         database:"perntodo"
 
