@@ -3,10 +3,12 @@ import React,{Fragment,useState} from "react";
 const InputTodos=() => {
     const [description,setDescription]=useState("");
     const onSubmitForm =async(e) => {
+        console.log("oooo");
         e.preventDefault();
         try {
+            console.log("ppppp");
             const body={description};
-            const response =await fetch("http://localhost:5000/todos",{
+            await fetch("http://localhost:5000/todos",{
                 method:"POST",
                 headers:{"content-type":"application/json"},
                 body:JSON.stringify(body)
