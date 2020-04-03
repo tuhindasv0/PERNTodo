@@ -40,8 +40,8 @@ app.put("/todos/:id",async(req,res)=>{
     try {
         const {id}=req.params;
         const {description}=req.body;
-        const updateTodo=await pool.query("UPDATE todo SET description=$2 WHERE todo_id=$1",[id,description]);
-        res.json("Updated");
+        const updateTodo=await pool.query("UPDATE todo SET description=$2 WHERE todo_id=$1 RETURNING *",[id,description]);
+        res.json(updateTodo.rows[0]);
     } catch (error) {
         console.error(error.message);
         
