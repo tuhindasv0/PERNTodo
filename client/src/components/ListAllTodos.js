@@ -35,6 +35,9 @@ const ListAllTodos = () => {
     <thead>
       <tr>
         <th>Description</th>
+        <th>Start Date</th>
+        <th>Due Date</th>
+        <th>Status</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -43,6 +46,9 @@ const ListAllTodos = () => {
       {todos.map(todo => (
           <tr key={todo.todo_id}>
           <td>{todo.description}</td>
+          <td>{todo.start_date}</td>
+          <td>{todo.due_date}</td>
+          <td>{todo.status}</td>
           <td><EditTodo todo={todo}/></td>
           <td><button 
                 className="btn btn-danger"

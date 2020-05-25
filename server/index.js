@@ -8,8 +8,8 @@ app.use(express.json());
 
 app.post("/todos",async(req,res)=>{
     try {
-        const {description}=req.body;
-        const newTodo=await pool.query("INSERT INTO todo (description) VALUES($1) RETURNING *",[description]);
+        const {description,dueDate,startDate}=req.body;
+        const newTodo=await pool.query("INSERT INTO todo (description,due_date,start_date,status) VALUES($1,$2,$3,$4) RETURNING *",[description,dueDate,startDate,"CREATED"]);
         res.json(newTodo.rows[0]);
     } catch (error) {
         console.error(error.message);
@@ -18,7 +18,18 @@ app.post("/todos",async(req,res)=>{
 })
 app.get("/todos",async(req,res)=>{
     try {
-        const todos=await pool.query("SELECT * FROM todo");
+        const todos=await pool.query("SELECT * FROM todo wher status NOT IN ('COMPLETED')");
+        res.json(todos.rows);
+    } catch (error) {
+        console.error(error.message);
+        
+    }
+})
+
+
+app.get("/comletedTodos",async(req,res)=>{
+    try {
+        const todos=await pool.query("SELECT * FROM todo where status='COMPLETED'");
         res.json(todos.rows);
     } catch (error) {
         console.error(error.message);
