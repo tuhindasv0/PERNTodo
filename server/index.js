@@ -18,7 +18,7 @@ app.post("/todos",async(req,res)=>{
 })
 app.get("/todos",async(req,res)=>{
     try {
-        const todos=await pool.query("SELECT * FROM todo wher status NOT IN ('COMPLETED')");
+        const todos=await pool.query("SELECT * FROM todo where status NOT IN ('COMPLETED')");
         res.json(todos.rows);
     } catch (error) {
         console.error(error.message);
@@ -58,6 +58,11 @@ app.put("/todos/:id",async(req,res)=>{
         
     }
 })
+
+
+
+
+
 app.delete("/todos/:id",async(req,res)=>{
     try {
         const {id}=req.params;

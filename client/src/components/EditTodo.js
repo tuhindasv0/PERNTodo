@@ -3,8 +3,7 @@ import React, { Fragment, useState } from "react";
 const EditTodo = ({todo}) => {
     
     const[description,setDescription]=useState(todo.description);
-
-    const updateTodo= async(e) => {
+       const updateTodo= async(e) => {
         e.preventDefault();
         try {
             const body={description};
@@ -44,8 +43,12 @@ onClick={()=>setDescription(todo.description)} >
                 onChange ={e => setDescription(e.target.value)}></input>
       </div>
 
+      <form>
+  
+
       
       <div className="modal-footer">
+    
         <button type="button" className="btn btn-warning" data-dismiss="modal"
                 onClick={e=>updateTodo(e)}>Save</button>
           

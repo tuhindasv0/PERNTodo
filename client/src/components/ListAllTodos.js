@@ -2,6 +2,7 @@ import React, { Fragment,useEffect,useState } from "react";
 import EditTodo from "./EditTodo";
 const ListAllTodos = () => {
     const[todos,setTodos]=useState([]);
+    const[status,setStatus]=useState();
 
     const deleteTodo=async(id) => {
         try {
@@ -15,6 +16,10 @@ const ListAllTodos = () => {
             console.error(error.message);
         }
     }
+
+
+   
+
 
     const getTodos=async() => {
         try {
@@ -48,7 +53,7 @@ const ListAllTodos = () => {
           <td>{todo.description}</td>
           <td>{todo.start_date}</td>
           <td>{todo.due_date}</td>
-          <td>{todo.status}</td>
+          <td>{todo.status} </td>
           <td><EditTodo todo={todo}/></td>
           <td><button 
                 className="btn btn-danger"
