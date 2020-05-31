@@ -50,14 +50,16 @@ app.get("/todos/:id",async(req,res)=>{
 app.put("/todos/:id",async(req,res)=>{
     try {
         const {id}=req.params;
-        const {description}=req.body;
-        const updateTodo=await pool.query("UPDATE todo SET description=$2 WHERE todo_id=$1 RETURNING *",[id,description]);
+        const description=req.body.description;
+        const status=req.body.status;
+        const updateTodo=await pool.query("UPDATE todo SET description=$2,status=$3 WHERE todo_id=$1 RETURNING *",[id,description,status]);
         res.json(updateTodo.rows[0]);
-    } catch (error) {
+        } catch (error) {
         console.error(error.message);
         
     }
 })
+
 
 
 

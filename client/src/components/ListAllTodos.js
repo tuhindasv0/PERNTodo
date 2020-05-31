@@ -2,7 +2,7 @@ import React, { Fragment,useEffect,useState } from "react";
 import EditTodo from "./EditTodo";
 const ListAllTodos = () => {
     const[todos,setTodos]=useState([]);
-    const[status,setStatus]=useState();
+   
 
     const deleteTodo=async(id) => {
         try {
